@@ -1,12 +1,14 @@
 package frc.libraries;
 
 import com.revrobotics.CANEncoder;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel;
 
 import edu.wpi.first.wpilibj2.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 
-import frc.robot.CANSpark1038;
+import frc.libraries.CANSpark1038;
 
 public class DriveTrain1038 implements Subsystem {
     public enum DriveModes {
@@ -29,13 +31,13 @@ public class DriveTrain1038 implements Subsystem {
     public DoubleSolenoid GearChangeSolenoid = new DoubleSolenoid(LOW_GEAR_PORT, HIGH_GEAR_PORT);
     public boolean isHighGear = false;
 
-    public static CANSpark1038 CANSparkRightFront = new CANSpark1038(RIGHT_FRONT_PORT, MotorType.kBrushless);
-    public static CANSpark1038 CANSparkRightBack = new CANSpark1038(RIGHT_BACK_PORT, MotorType.kBrushless);
-    public static CANSpark1038 CANSparkLeftFront = new CANSpark1038(LEFT_FRONT_PORT, MotorType.kBrushless);
-    public static CANSpark1038 CANSparkLeftBack = new CANSpark1038(LEFT_BACK_PORT, MotorType.kBrushless);
+    public static CANSpark1038 CANSparkRightFront = new CANSpark1038(RIGHT_FRONT_PORT, CANSparkMaxLowLevel.MotorType.kBrushless);
+    public static CANSpark1038 CANSparkRightBack = new CANSpark1038(RIGHT_BACK_PORT, CANSparkMaxLowLevel.MotorType.kBrushless);
+    public static CANSpark1038 CANSparkLeftFront = new CANSpark1038(LEFT_FRONT_PORT, CANSparkMaxLowLevel.MotorType.kBrushless);
+    public static CANSpark1038 CANSparkLeftBack = new CANSpark1038(LEFT_BACK_PORT, CANSparkMaxLowLevel.MotorType.kBrushless);
 
-    public CANEncoder CANSparkRightEncoder = new CANEncoder(CANSparkRightBack);
-    public CANEncoder CANSparkLeftEncoder = new CANEncoder(CANSparkLeftBack);
+    public CANEncoder CANSparkRightEncoder = CANSparkRightBack.getEncoder(); //To get an encoder use CANSpark__.getEncoder()
+    public CANEncoder CANSparkLeftEncoder = CANSparkLeftBack.getEncoder();
 
     private DifferentialDrive differentialDrive;
     private static DriveTrain1038 driveTrain;
@@ -59,10 +61,10 @@ public class DriveTrain1038 implements Subsystem {
         CANSparkRightBack.setInverted(true);
         CANSparkRightFront.setInverted(true);
 
-        CANSparkLeftBack.setIdleMode(IdleMode.kCoast);
-        CANSparkLeftFront.setIdleMode(IdleMode.kCoast);
-        CANSparkRightBack.setIdleMode(IdleMode.kCoast);
-        CANSparkRightFront.setIdleMode(IdleMode.kCoast);
+        CANSparkLeftBack.setIdleMode(CANSparkMax.IdleMode.kCoast);
+        CANSparkLeftFront.setIdleMode(CANSparkMax.IdleMode.kCoast);
+        CANSparkRightBack.setIdleMode(CANSparkMax.IdleMode.kCoast);
+        CANSparkRightFront.setIdleMode(CANSparkMax.IdleMode.kCoast);
 
         CANSparkRightFront.follow(CANSparkRightBack);
         CANSparkLeftFront.follow(CANSparkLeftBack);

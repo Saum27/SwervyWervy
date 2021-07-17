@@ -204,10 +204,10 @@ public class Joystick1038 extends Joystick {
 	 */
 	public boolean getLeftTriggerDigital() {
 		if(getRawAxis(LEFT_TRIGGER) > .5) {
-			return True; 
+			return true; 
 		}
 		else{
-			return False;
+			return false;
 		}
 	}
 	
@@ -216,12 +216,12 @@ public class Joystick1038 extends Joystick {
 	 * 
 	 * @return value of the right trigger axis
 	 */
-	public double getRightTriggerDigital() {
+	public boolean getRightTriggerDigital() {
 		if(getRawAxis(RIGHT_TRIGGER) > .5) {
-			return True; 
+			return true; 
 		}
 		else{
-			return False;
+			return false;
 		}
 	}
 	
