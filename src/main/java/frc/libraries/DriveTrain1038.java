@@ -18,13 +18,13 @@ public class DriveTrain1038 implements Subsystem {
     public DriveModes currentDriveMode = DriveModes.dualArcadeDrive;
 
     //Change these numbers for each new robot       v
-    public final double WHEEL_DIAMETER = 4;
-    private final int HIGH_GEAR_PORT = 0;
-    private final int LOW_GEAR_PORT = 1;
-    private final static int RIGHT_FRONT_PORT = 0;
-    private final static int RIGHT_BACK_PORT = 0;
-    private final static int LEFT_FRONT_PORT = 0;
-    private final static int LEFT_BACK_PORT = 0;
+    public final double WHEEL_DIAMETER = 6;
+    private final int HIGH_GEAR_PORT = 5; //3
+    private final int LOW_GEAR_PORT = 4; //2
+    private final static int RIGHT_FRONT_PORT = 53;
+    private final static int RIGHT_BACK_PORT = 54;
+    private final static int LEFT_FRONT_PORT = 51;
+    private final static int LEFT_BACK_PORT = 52;
     //Change these numbers for each new robot       ^
 
 
