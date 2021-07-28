@@ -33,7 +33,7 @@ public class Limelight1038 {
         private LEDStates(int value) { this.value = value; }
     };
 
-    private Limelight() {
+    private void Limelight() {
        changeLEDStatus(LEDStates.Off);
     }
 

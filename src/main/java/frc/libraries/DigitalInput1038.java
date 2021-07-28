@@ -11,8 +11,8 @@ public class DigitalInput1038 extends DigitalInput {
 	public boolean get() {
 		return super.get();
 	}
-	@Override
+	
 	public boolean getInverted() {
-		return !super.get();
+		return !get();
 	}
 }
