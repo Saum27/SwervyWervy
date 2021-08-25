@@ -12,6 +12,7 @@ import frc.libraries.*;
 import edu.wpi.first.wpilibj.Joystick;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import frc.libraries.DriveTrain1038;
 
 
 /*
@@ -25,7 +26,11 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
   public class Robot extends TimedRobot {
     Joystick1038 driverJoystick = new Joystick1038(0);
     Joystick1038 operatorJoystick = new Joystick1038(1);
-    /*
+    final DriveTrain1038 driveTrain = DriveTrain1038.getInsdance();
+    navigateClass teleopPeriodic;
+    drive Train.TankDrive(driverjoystick.getleftJoysticVertical();
+    driverJoystick.getRightJoystickVertical());
+        /*
      * This function is run when the robot is first started up and should be used
      * for any initialization code.
      */
