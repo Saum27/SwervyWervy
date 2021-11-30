@@ -12,9 +12,10 @@ import frc.libraries.*;
 import edu.wpi.first.wpilibj.Joystick;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-import frc.libraries.TalonSRX1038;
 
+import frc.libraries.*;
 
+import frc.libraries.DriveTrain1038;
 /*
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the IterativeRobot
@@ -26,9 +27,10 @@ import frc.libraries.TalonSRX1038;
   public class Robot extends TimedRobot {
     Joystick1038 driverJoystick = new Joystick1038(0);
     Joystick1038 operatorJoystick = new Joystick1038(1);
-    
-    private final DriveTrain1038 driveTrain = DriveTrain1038.getInstance();
-
+    //private final driveTrain1038 driveTrain = driveTrain1038.getInstance();
+    Gyro1038 gyro = Gyro1038.getInstance();
+    DriveTrain1038 driveTrain = DriveTrain1038.getInstance();
+    boolean prevAButton = false;
     /*
      * This function is run when the robot is first started up and should be used
      * for any initialization code.
@@ -41,18 +43,54 @@ import frc.libraries.TalonSRX1038;
     @Override
     public void robotPeriodic() {
     }
+
   
     public void teleopInit() {
+      driveTrain.resetEncoders();
     }
   
-    public void teleopPeriodic() {
-      driveTrain.tankDrive(driverJoystick.getLeftJoystickVertical() * -.8, driverJoystick.getRightJoystickVertical() * -.8);
-      
-      //final int talonTesting_port_1 = 55
-      
+    // Following code loop in teleOP repreatedly
+    public void teleopPeriodic() {  
+
+      driveTrain.tankDrive(driverJoystick.getLeftJoystickVertical() * .8, driverJoystick.getRightJoystickVertical() * .8);
+
     }
+
+    // Function contains code for operating systems that loops in teleOp
+    public void operator(){
+      if (operatorJoystick.getXButton()){
+
+        System.out.println(gyro.getAngle());
+      }
+
+      if (driverJoystick.getAButton()){
+        if(!prevAButton){
+          if(driveTrain.isHighGear){
+            driveTrain.lowGear();
+          } 
+          else{
+            driveTrain.highGear();
+          }
+        }
+        prevAButton = true;
+      }
+      else{
+        prevAButton = false;
+      }
+    }
+
+    // // Function contains code for driving that loops in teleOp
+    public void driver(){
+      driveTrain.dualArcadeDrive(driverJoystick.getLeftJoystickVertical(), driverJoystick.getRightJoystickHorizontal());
+
+      System.out.println("Left Encoder:   " + driveTrain.getCANSparkLeftEncoder());
+      System.out.println("Left Distance:  " + driveTrain.getLeftDriveEncoderDistance() + " inches");
+      System.out.println("Right Encoder:  " + driveTrain.getCANSparkRightEncoder());
+      System.out.println("Right Distance: " + driveTrain.getRightDriveEncoderDistance()  + " inches");
+    }
+
   
-             
+    
   
     public void autonomousInit() {
     }
