@@ -9,11 +9,12 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import frc.libraries.*;
 
+
 import edu.wpi.first.wpilibj.Joystick;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
-import frc.libraries.*;
+import frc.subsystem.talonTest;
 
 import frc.libraries.DriveTrain1038;
 /*
@@ -27,10 +28,11 @@ import frc.libraries.DriveTrain1038;
   public class Robot extends TimedRobot {
     Joystick1038 driverJoystick = new Joystick1038(0);
     Joystick1038 operatorJoystick = new Joystick1038(1);
-    //private final driveTrain1038 driveTrain = driveTrain1038.getInstance();
+    //private final driveTrain1038 driveTrain = driveTrain1038.getInstance()
     Gyro1038 gyro = Gyro1038.getInstance();
     DriveTrain1038 driveTrain = DriveTrain1038.getInstance();
     boolean prevAButton = false;
+    
     /*
      * This function is run when the robot is first started up and should be used
      * for any initialization code.
@@ -51,6 +53,14 @@ import frc.libraries.DriveTrain1038;
   
     // Following code loop in teleOP repreatedly
     public void teleopPeriodic() {  
+      
+      if(operatorJoystick.getXButton()) {
+        talonTest.TalonLeft();
+      }
+
+      if(operatorJoystick.getYButton()) {
+        talonTest.TalonRight();
+      }
 
       driveTrain.tankDrive(driverJoystick.getLeftJoystickVertical() * .8, driverJoystick.getRightJoystickVertical() * .8);
 
