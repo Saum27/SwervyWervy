@@ -1,3 +1,4 @@
+
 /*----------------------------------------------------------------------------*/
 /* Copyright (c) 2017-2018 FIRST. All Rights Reserved.                        */
 /* Open Source Software - may be modified and shared by FRC teams. The code   */
@@ -8,7 +9,7 @@
 package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import frc.libraries.*;
-
+import frc.subsystem.talonTest;
 import edu.wpi.first.wpilibj.Joystick;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
@@ -25,6 +26,11 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
   public class Robot extends TimedRobot {
     Joystick1038 driverJoystick = new Joystick1038(0);
     Joystick1038 operatorJoystick = new Joystick1038(1);
+
+    talonTest talonStuff = new talonTest();
+    
+    private final DriveTrain1038 driveTrain = DriveTrain1038.getInstance();
+
     /*
      * This function is run when the robot is first started up and should be used
      * for any initialization code.
@@ -43,9 +49,13 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
   
     public void teleopPeriodic() {
 
-    }
+        driveTrain.tankDrive(driverJoystick.getLeftJoystickVertical() * -.8, driverJoystick.getRightJoystickVertical() * -.8);
+
+        talonStuff.mover(operatorJoystick.getRightJoystickHorizontal());
+       
+       }
   
-    
+             
   
     public void autonomousInit() {
     }
@@ -72,4 +82,3 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
   
   
  }
-
