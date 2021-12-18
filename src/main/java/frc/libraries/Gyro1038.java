@@ -47,6 +47,7 @@ public class Gyro1038 extends GyroBase {
 
 	@Override
 	public double getAngle() {
+		readGyro();
 		return gyroVal;
 	}
 
