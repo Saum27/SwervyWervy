@@ -33,6 +33,8 @@ public class Robot extends TimedRobot {
   DriveTrain1038 driveTrain = DriveTrain1038.getInstance();
   boolean prevAButton = false;
 
+  talonTest talonFXtest = talonTest.getInstance();
+
   /*
    * This function is run when the robot is first started up and should be used
    * for any initialization code.
@@ -60,7 +62,7 @@ public class Robot extends TimedRobot {
     // if(operatorJoystick.getYButton()) {
     // talonTest.TalonRight();
     // }
-    talonTest.TalonRight();
+    talonFXtest.talonRampUp(.1);
 
     driveTrain.tankDrive(driverJoystick.getLeftJoystickVertical() * .8, driverJoystick.getRightJoystickVertical() * .8);
 
