@@ -62,7 +62,7 @@ public class Robot extends TimedRobot {
     // if(operatorJoystick.getYButton()) {
     // talonTest.TalonRight();
     // }
-    talonFXtest.talonRampUp(.1);
+    talonFXtest.talonRampUp();
 
     driveTrain.tankDrive(driverJoystick.getLeftJoystickVertical() * .8, driverJoystick.getRightJoystickVertical() * .8);
 
