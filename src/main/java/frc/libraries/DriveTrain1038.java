@@ -1,14 +1,14 @@
 package frc.libraries;
 
-import com.revrobotics.CANEncoder;
+import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel;
 
 import edu.wpi.first.wpilibj2.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.PneumaticsModuleType;
 
-import frc.libraries.CANSpark1038;
 
 public class DriveTrain1038 implements Subsystem {
     public enum DriveModes {
@@ -21,14 +21,17 @@ public class DriveTrain1038 implements Subsystem {
     public final double WHEEL_DIAMETER = 4;
     private final int HIGH_GEAR_PORT = 3;
     private final int LOW_GEAR_PORT = 2;
-    private final static int RIGHT_FRONT_PORT = 53;
-    private final static int RIGHT_BACK_PORT = 54;
-    private final static int LEFT_FRONT_PORT = 51;
-    private final static int LEFT_BACK_PORT = 52;
+    private final static int RIGHT_FRONT_PORT = 0;
+    private final static int RIGHT_BACK_PORT = 0;
+    private final static int LEFT_FRONT_PORT = 0;
+    private final static int LEFT_BACK_PORT = 0;
     //Change these numbers for each new robot       ^
 
 
-    public DoubleSolenoid GearChangeSolenoid = new DoubleSolenoid(LOW_GEAR_PORT, HIGH_GEAR_PORT);
+    public DoubleSolenoid GearChangeSolenoid = new DoubleSolenoid(
+            PneumaticsModuleType.REVPH,
+            LOW_GEAR_PORT,
+            HIGH_GEAR_PORT);
     public boolean isHighGear = false;
 
     public static CANSpark1038 CANSparkRightFront = new CANSpark1038(RIGHT_FRONT_PORT, CANSparkMaxLowLevel.MotorType.kBrushless);
@@ -36,8 +39,8 @@ public class DriveTrain1038 implements Subsystem {
     public static CANSpark1038 CANSparkLeftFront = new CANSpark1038(LEFT_FRONT_PORT, CANSparkMaxLowLevel.MotorType.kBrushless);
     public static CANSpark1038 CANSparkLeftBack = new CANSpark1038(LEFT_BACK_PORT, CANSparkMaxLowLevel.MotorType.kBrushless);
 
-    public CANEncoder CANSparkRightEncoder = CANSparkRightBack.getEncoder(); //To get an encoder use CANSpark__.getEncoder()
-    public CANEncoder CANSparkLeftEncoder = CANSparkLeftBack.getEncoder();
+    public RelativeEncoder CANSparkRightEncoder = CANSparkRightBack.getEncoder(); //To get an encoder use CANSpark__.getEncoder()
+    public RelativeEncoder CANSparkLeftEncoder = CANSparkLeftBack.getEncoder();
 
     private DifferentialDrive differentialDrive;
     private static DriveTrain1038 driveTrain;
