@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import frc.libraries.TalonSRX1038;
+import frc.subsystem.wheel1;
 
 
 /*
@@ -43,6 +44,7 @@ import frc.libraries.TalonSRX1038;
     }
   
     public void teleopInit() {
+      wheel1 wheels = new wheel1(0.1);
     }
   
     public void teleopPeriodic() {
